@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Aufgabe4 {
-    public Aufgabe4 () {
+    public Aufgabe4() {
         JFrame frame = new JFrame("Rechner");
 
         frame.setSize(500, 200);
@@ -55,12 +55,14 @@ public class Aufgabe4 {
     class RechnerListener implements ActionListener {
         JTextField zahl1, zahl2, result;
         String operation;
+
         RechnerListener(JTextField zahl1, JTextField zahl2, JTextField result, String operation) {
             this.zahl1 = zahl1;
             this.zahl2 = zahl2;
             this.result = result;
             this.operation = operation;
         }
+
         public void actionPerformed(ActionEvent e) {
             if (operation.equals("1")) {
                 zahl1.setText("");
@@ -68,8 +70,16 @@ public class Aufgabe4 {
                 result.setText("");
                 return;
             }
-            double z1 = Double.parseDouble(zahl1.getText());
-            double z2 = Double.parseDouble(zahl2.getText());
+
+            double z1, z2;
+
+            try {
+                z1 = Double.parseDouble(zahl1.getText());
+                z2 = Double.parseDouble(zahl2.getText());
+            } catch (NumberFormatException ex) {
+                result.setText("Fehler");
+                return;
+            }
             double res = 0;
             switch (operation) {
                 case "+":
