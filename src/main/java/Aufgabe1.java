@@ -6,20 +6,20 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Aufgabe1 {
-
+static JPanel panel;
     public Aufgabe1() {
 
         JFrame frame = new JFrame("Black and White");
         frame.setVisible(true);
-        frame.setSize(500, 200);
+        frame.setSize(250, 150);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel();
+        panel = new JPanel();
         frame.add(panel);
         JButton button = new JButton("Drueck mich!");
 
-        button.addActionListener(new ButtonBearbeiter(panel));
-        panel.addMouseListener(new MausBearbeiter(panel));
+        button.addActionListener(new ButtonBearbeiter());
+        panel.addMouseListener(new MausBearbeiter());
 
         panel.add(button);
 
@@ -27,23 +27,15 @@ public class Aufgabe1 {
 }
 
 class ButtonBearbeiter implements ActionListener {
-    JPanel panel;
-    ButtonBearbeiter(JPanel panel) {
-        this.panel = panel;
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
-        panel.setBackground( Color.black );
+        Aufgabe1.panel.setBackground( Color.black );
     }
 }
 class MausBearbeiter implements MouseListener {
-    JPanel panel;
-    MausBearbeiter (JPanel panel){
-        this.panel = panel;
-    }
     @Override
     public void mouseClicked(MouseEvent e) {
-        panel.setBackground(Color.WHITE);
+        Aufgabe1.panel.setBackground(Color.WHITE);
     }
 
     @Override
